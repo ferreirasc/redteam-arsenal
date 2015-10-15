@@ -38,5 +38,5 @@ while True:
 		print "[-] %s listen to requests..." %(MY_IP)
 		data, addr = sock.recvfrom(1024)
 		print "[-] Request received."
-		print data[0]
-		print data, addr
+		print unpack(data[0])
+		print unpack(data), addr
