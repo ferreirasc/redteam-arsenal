@@ -123,22 +123,22 @@ while True:
 				IP_dest = int2ip(data[2])
 				print "[-] Join message from %d with IP adress %s" %(new_id,addr[0])
 				if(ant == prox and ant != -1 and MY_IP == IP_prox): #so um elemento na rede
-					print "[-] Reply message for 1",(IP_dest)
+					print "[-] Reply message for ",(IP_dest)
                     #print "entrou1"
 					send_JOIN_R(chr(101), chr(1), IDENTIFIER, ip2int(MY_IP), ant, ip2int(IP_ant), IP_dest)
 					print "Predecessor ID: %d, Successor ID: %d" %(ant, prox)
 				elif(ant == prox and ant == -1):
 					send_JOIN_R(chr(203), chr(0), 0, 0, 0, 0, IP_dest)
 				elif(new_id > IDENTIFIER and new_id > ant and IDENTIFIER < ant):
-					print "[-] Reply message for 2 %s" %(IP_dest)
+					print "[-] Reply message for %s" %(IP_dest)
 					send_JOIN_R(chr(101), chr(1), IDENTIFIER, ip2int(MY_IP), ant, ip2int(IP_ant), IP_dest)
 					print "Predecessor ID: %d, Successor ID: %d" %(ant, prox)
 				elif(new_id < IDENTIFIER and new_id < ant and IDENTIFIER < ant):
-					print "[-] Reply message for 3 %s" %(IP_dest)
+					print "[-] Reply message for %s" %(IP_dest)
 					send_JOIN_R(chr(101), chr(1), IDENTIFIER, ip2int(MY_IP), ant, ip2int(IP_ant), IP_dest)
 					print "Predecessor ID: %d, Successor ID: %d" %(ant, prox)
 				elif(new_id < IDENTIFIER and new_id > ant):
-					print "[-] Reply message for 4 %s" %(IP_dest)
+					print "[-] Reply message for %s" %(IP_dest)
 					send_JOIN_R(chr(101), chr(1), IDENTIFIER, ip2int(MY_IP), ant, ip2int(IP_ant), IP_dest)
 					print "Predecessor ID: %d, Successor ID: %d" %(ant, prox)
 				else:
