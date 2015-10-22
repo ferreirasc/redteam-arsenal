@@ -24,6 +24,12 @@ def send_update(cod_message, id_orig, id_suc, ip_new, IP_dest):
 def send_update_ack(cod_message, error, identifier, IP_dest):
 	sock.sendto(pack('! c c I',cod_message, error, identifier), (IP_dest, UDP_PORT))
 
+def send_leave_message(cod_message, id_orig, id_suc, IP_suc, id_ant, IP_ant, IP_dest):
+	sock.sendto(pack('! c I I I I I',cod_message, id_orig, id_suc, IP_suc, id_ant, IP_ant), (IP_dest, UDP_PORT))
+
+def send_leave_ack(cod_message, id_orig, IP_dest):
+	sock.sendto(pack('! c I',cod_message,IDENTIFIER), (IP_dest, UDP_PORT))
+
 UDP_PORT = 12345
 MY_IP = raw_input("Entre com o IP desta maquina: ")
 MY_IP_int = ip2int(MY_IP)
@@ -81,7 +87,26 @@ while True:
 	elif(operation == 1 and ant != -1):
 		print "[-] Network already exists."
 	elif(operation == 3):
-		print "Nao implementado :-)"
+		if(ant!=-1):
+			print "[-] Sending leave message for the successor node and predecessor node"
+			send_leave_message(chr(2), IDENTIFIER, prox, ip2int(IP_prox), ant, ip2int(IP_ant), IP_prox)
+			leave_R_data = ""
+			while (not leave_R_data):
+				leave_R_data, addr = sock.recvfrom(1024)
+			print "[-] Leave response received from successor " + str(addr)
+			prox_anterior = prox
+			prox = -1
+			send_leave_message(chr(2), IDENTIFIER, prox_anterior, ip2int(IP_prox), ant, ip2int(IP_ant), IP_ant)
+			leave_R_data = ""
+			while (not leave_R_data):
+				leave_R_data, addr = sock.recvfrom(1024)
+			print "[-] Leave response received from predecessor " + str(addr)
+			ant = -1
+			print "Predecessor ID: %d, Sucessor ID: %d" %(ant, prox)
+			continue
+		else:
+			print "[-] This node does not participate in any network."
+			continue
 
 	while 1:
 		try:
@@ -132,5 +157,15 @@ while True:
 				IP_prox = int2ip(data[3])
 				print "Predecessor ID: %d, Sucessor ID: %d, IP_PROX = %s, IP_ANT = %s" %(ant, prox, IP_prox, IP_ant)
 				send_update_ack(chr(203), chr(1), IDENTIFIER, addr[0])
+			elif(ord(cod_message) == 2):
+				data = unpack('! c I I I I I', data)
+				print "[-] Sending ack message of the leave from " + str(addr)
+				if(prox == data[1]):
+					prox = data[2]
+					IP_prox = int2ip(data[3])
+				if(ant == data[1]):
+					ant = data[4]
+					IP_ant = int2ip(data[5])
+				send_leave_ack(chr(201), IDENTIFIER, addr[0])
 		except (KeyboardInterrupt, SystemExit):
 			break
