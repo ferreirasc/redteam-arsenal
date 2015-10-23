@@ -34,7 +34,7 @@ def send_leave_ack(cod_message, id_orig, IP_dest):
 UDP_PORT = 12345
 MY_IP = raw_input("Entre com o IP desta maquina: ")
 MY_IP_int = ip2int(MY_IP)
-IDENTIFIER = 10
+IDENTIFIER = randint(0,10000)
 print "MY IDENTIFIER: %d" %(IDENTIFIER)
 ant = -1
 prox = -1
