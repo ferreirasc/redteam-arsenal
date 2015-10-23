@@ -2,6 +2,7 @@ import socket
 import sys
 from random import randint
 from struct import *
+from time import *
 
 def int2ip(addr):
     return socket.inet_ntoa(pack("!I", addr))
@@ -74,6 +75,7 @@ while True:
 			IP_ant = int2ip(join_R_data[5])
 			print "[-] Sending confirmation message for join to " + str(addr)
 			send_ack_join(chr(102), chr(1), IDENTIFIER, ip2int(MY_IP), addr[0])
+			sleep(0.25)
 			print "[-] Sending update message to %s" %(IP_ant)
 			send_update(chr(3),IDENTIFIER, IDENTIFIER, ip2int(MY_IP), IP_ant)
 			update_R_data = ""
