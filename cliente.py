@@ -144,6 +144,7 @@ while True:
 					send_JOIN_R(chr(101), chr(1), IDENTIFIER, ip2int(MY_IP), ant, ip2int(IP_ant), IP_dest)
 					print "Predecessor ID: %d, Successor ID: %d" %(ant, prox)
 				else:
+					print "Forwarding join for %s" %(IP_prox)
 					sock.sendto(unpkddata, (IP_prox, UDP_PORT))
 
 			elif(ord(cod_message) == 102):
