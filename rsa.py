@@ -29,8 +29,8 @@ def inv_modulo(x, m):
 	(u, _, p) = bezout(x, m)
 	if p == 1: 
 		return u%abs(m)
-	else: 
-		raise Exception("%s et %s ne sont pas premiers entre eux" % (x, m))
+	else:
+		raise Exception("%s e %s nao sao primos entre si" % (x, m))
 
 if __name__ == "__main__":
 	phi = (p-1)*(q-1)
