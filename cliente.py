@@ -1,3 +1,5 @@
+#Implementation of a ring network topology based in chord protocol
+
 import socket
 import sys
 from random import randint

@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# Um simples port-scan em python (TCP_Connections)
+# Simple port scanning - python (TCP_Connections)
 # Leonardo Ferreira - leoferreirafx@gmail.com
 
 import sys

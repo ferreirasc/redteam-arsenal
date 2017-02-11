@@ -1,7 +1,8 @@
+#Any script for copy files into Openstack nodes
 #!/bin/bash
 
 USER=ggp
-PASSWORD=blabla
+PASSWORD=GITHUB_HACKING_HUH? :-)
 HOME=/home/stack
 CONFIG="install_openstack_server_controller_v*.sh"
 LIB="../functions.sh"

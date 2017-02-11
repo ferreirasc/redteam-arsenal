@@ -1,3 +1,5 @@
+#Script to gathering information in a privilege escalation
+
 #!/bin/sh
 echo Distribution and kernel version
 cat /etc/issue
