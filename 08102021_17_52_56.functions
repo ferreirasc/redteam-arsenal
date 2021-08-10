@@ -1,0 +1,6 @@
+Replacing: Invoke-Nightmare with: frequentest
+Replacing: get_nightmare_dll with: profile
+Replacing: New-InMemoryModule with: abridgment
+Replacing: Add-Win32Type with: otherwise
+Replacing: psenum with: perhaps
+Replacing: struct with: servers
