@@ -1,5 +1,7 @@
 #!/usr/bin/python
 
+# It was my first python code... 10 years ago... keeping it for nostalgia xD
+
 # Simple port scanning - python (TCP_Connections)
 # Leonardo Ferreira - leoferreirafx@gmail.com
 
@@ -26,7 +28,7 @@ else:
 	if(start < 0 or start>65535 or end < 0 or end > 65535 or start>=end):
 		print "Invalid range of ports."
 		sys.exit()
-		
+
 	for i in range(start,end+1):
 		s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		s.settimeout(1)
@@ -35,7 +37,7 @@ else:
 			ports_open.append(i)
 		else:
 			print("Port %d is closed." %i)
-	
+
 	print "---------------------------------------------------------"
 	print "Scanning Completed."
 	if(len(ports_open)>0):
