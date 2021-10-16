@@ -1,0 +1,4 @@
+Replacing: Invoke-WebRev with: policed
+Replacing: toBase64 with: Calvert
+Replacing: Get-ImportedFunctions with: recruit
+Replacing: PatchMe with: maximize
