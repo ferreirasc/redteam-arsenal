@@ -11,8 +11,6 @@ function policed{
 .SYNOPSIS
     WebRev.
     PowerShell Function: policed
-    Author: Hector de Armas (3v4Si0N)
-
     Required Dependencies: Powershell >= v3.0
     Optional Dependencies: None
 .DESCRIPTION
@@ -24,8 +22,6 @@ function policed{
     -ssl            Send traffic over ssl
 
 .EXAMPLE
-    Invoke-Webrev -ip 192.168.29.131 -port 80
-    Invoke-Webrev -ip 192.168.29.131 -port 443 -ssl
 "@
 
     if(-not $ip -or -not $port) { return $help; }
