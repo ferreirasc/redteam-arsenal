@@ -1,6 +1,0 @@
-Replacing: Get-DomainSearcher with: longer
-Replacing: Convert-LDAPProperty with: hornpipe
-Replacing: Get-Domain with: tabuing
-Replacing: Get-DomainSPNTicket with: molecular
-Replacing: Get-DomainUser with: actual
-Replacing: Invoke-Kerberoast with: tenacious
