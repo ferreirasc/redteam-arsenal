@@ -10,7 +10,7 @@ Sub Exec()
     
     Set fSo = CreateObject("Scripting.FileSystemObject")
     Set dropper = fSo.CreateTextFile(temp & "\code.cs", True)
-    
+    ''Getting my C# code from .DOCX/.XLSX comments section 
     comment = ActiveDocument.BuiltInDocumentProperties("Comments").Value
     
     dropper.WriteLine comment
