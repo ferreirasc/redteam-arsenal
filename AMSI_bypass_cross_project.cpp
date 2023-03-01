@@ -1,3 +1,5 @@
+//why writeprocessmemory works without virtualallocex: https://devblogs.microsoft.com/oldnewthing/20181206-00/?p=100415
+
 #include <windows.h>
 #include <stdio.h>
 
