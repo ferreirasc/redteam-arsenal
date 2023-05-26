@@ -1,4 +1,4 @@
-# Autor: Leonardo Ferreira (leoferreirafx@gmail.com)
+# Autor: Leonardo Ferreira
 
 # Extract jitter information from iperf server output ("-y" option) 
 # and calculate the average of all jitter values in a folder.
