@@ -1,0 +1,19 @@
+$ComputerName = "DC01"
+$DomainName = "corp.lab"
+$SharedFolder = "SYSVOL"
+$Items = Get-ChildItem "\\$ComputerName.$DomainName\$SharedFolder" -recurse -Include *.xml, *.ini, *.ps1, *.txt, *.vba, *.vbs, *.sql, *.php, *.asp, *.aspx, *.conf, *.config
+foreach ($FileName in $Items)
+{
+	[string]$FileContent = (Get-content $FileName.FullName)
+        if($FileContent | Where-Object{ 
+		$_ -imatch "password" -or 
+		$_ -imatch "token" -or 
+		$_ -imatch "pass" -or
+		$_ -imatch "cpassword" -or
+		$_ -imatch "username" -or
+		$_ -imatch "connectionstring"
+	})
+	{
+		echo "[+] Pattern found on $FileName"    
+	}
+}
