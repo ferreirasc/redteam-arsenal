@@ -1,7 +1,7 @@
 function essentially
 {
     param (
-        [string]$mvtAZUjy99 = "TestPrinter",
+        [string]$mvtAZUjy99 = "TestPrinter2",
         [string]$ZZXVxEyx99 = "",
         [string]$TagLRplZ99 = "",
         [string]$DLL = ""
