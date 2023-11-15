@@ -1,7 +1,7 @@
 function essentially
 {
     param (
-        [string]$mvtAZUjy99 = "Totally Not Malicious",
+        [string]$mvtAZUjy99 = "TestPrinter",
         [string]$ZZXVxEyx99 = "",
         [string]$TagLRplZ99 = "",
         [string]$DLL = ""
