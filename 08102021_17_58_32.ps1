@@ -1,7 +1,7 @@
 function essentially
 {
     param (
-        [string]$mvtAZUjy99 = "Totally Not Malicious",
+        [string]$mvtAZUjy99 = "TestPrinter",
         [string]$ZZXVxEyx99 = "",
         [string]$TagLRplZ99 = "",
         [string]$DLL = ""
@@ -30,8 +30,6 @@ function essentially
         Write-Host "[+] created payload at $DLL"
         $zqgwjUnb99 = $true
     } else {
-        Write-Host "[+] using user-supplied payload at $DLL"
-        Write-Host "[!] ignoring NewUser and NewPassword arguments"
         $zqgwjUnb99 = $false
     }
     $Mod = Colonial -ModuleName "A$(Get-Random)"
