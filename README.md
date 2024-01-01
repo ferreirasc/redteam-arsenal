@@ -4,6 +4,8 @@ Scripts and binaries that I usually use in red team and regular pen tests.
 
 Most of the stuff here is far from fancy or the best solution possible, sorry :(... they just do the job and might come in handy for you in some way.
 
+---
+
 * addbyimpersonation.cpp: A modified version of sensepost's [impersonate](https://github.com/sensepost/impersonate) to only impersonate a token and add a new local admin/domain admin user to a computer/domain.
 	*  `.\addbyimpersonation.exe list` to list tokens.
 	*  `.\addbyimpersonation.exe adduser <token_ID> <username> <password> <server>` to add a new user impersonating the \<token_ID>. If \<server> is a DC, it will add a new domain user. If \<server> is a regular domain computer, it will add a new local user (SAM).
