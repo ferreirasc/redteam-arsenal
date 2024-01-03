@@ -1,6 +1,6 @@
 # Red Team Arsenal
 
-Scripts and binaries that I usually use in red team and regular pen tests. 
+Some binaries/scripts that may be useful in red team/pentest exercises.
 
 Most of the stuff here is far from fancy or the best solution possible, sorry :(... they just do the job and might come in handy for you in some way.
 
