@@ -13,6 +13,7 @@ Most of the stuff here is far from fancy or the best solution possible, sorry :(
 * b_python.exe: BloodHound.py project compiled to .exe via cx\_Freeze. You may want to run this with `--disable-pooling` flag.
 	* `.\b_python.exe -u <username> -p <pass> -d <domain> -dc <dc_fqdn> -gc <dc_fqdn> -ns <dc_ip> -c all --disable-pooling` 
 * generate\_malicious\_lnk.ps1: Malicious .lnk generator (with wordpad.exe icon).
+* cpy.exe: Certipy project compiled to .exe via cx\_Freeze.
 * CreateSymlink.exe: Precompiled "CreateSymlink.exe" from James Forshaw's
 * html\_smuggling\_loader.html: A HTML smuggling template.
 * hook\_detector.cs: EDR Hooks Detector in C#. Modify the code to include other win32 APIs.
