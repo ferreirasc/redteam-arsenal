@@ -1,14 +1,16 @@
 # Red Team Arsenal
 
-Scripts and binaries that I usually use in red team and regular pen tests. 
+Some binaries/scripts that may be useful in red team/pentest exercises.
 
 Most of the stuff here is far from fancy or the best solution possible, sorry :(... they just do the job and might come in handy for you in some way.
 
-* addbyimpersonation.cpp: A modified version of sensepost's [impersonate](https://github.com/sensepost/impersonate) to only impersonate a token and add a new local admin/domain admin user to a computer/domain.
-	*  `.\addbyimpersonation.exe list` to list tokens.
-	*  `.\addbyimpersonation.exe adduser <token_ID> <username> <password> <server>` to add a new user impersonating the \<token_ID>. If \<server> is a DC, it will add a new domain user. If \<server> is a regular domain computer, it will add a new local user (SAM).
-	*  `.\addbyimpersonation.exe addtodomaingroup <token_ID> <username> <domain_group> <server>` to add an existing domain user to a domain group.
-	*  `.\addbyimpersonation.exe addtolocalgroup <token_ID> <username> <local_group> <server>` to add an existing local user/domain user to a local group (e.g. builtin "Administrators" group).
+---
+
+* adduserbyimpersonation.cpp: A modified version of sensepost's [impersonate](https://github.com/sensepost/impersonate) to only impersonate a token and add a new local admin/domain admin user to a computer/domain.
+	*  `.\adduserbyimpersonation.exe list` to list tokens.
+	*  `.\adduserbyimpersonation.exe adduser <token_ID> <username> <password> <server>` to add a new user impersonating the \<token_ID>. If \<server> is a DC, it will add a new domain user. If \<server> is a regular domain computer, it will add a new local user (SAM).
+	*  `.\adduserbyimpersonation.exe addtodomaingroup <token_ID> <username> <domain_group> <server>` to add an existing domain user to a domain group.
+	*  `.\adduserbyimpersonation.exe addtolocalgroup <token_ID> <username> <local_group> <server>` to add an existing local user/domain user to a local group (e.g. builtin "Administrators" group).
 * GetNPUsers.exe: GetNPUsers.py from impacket compiled to .exe via pyinstaller.
 * b_python.exe: BloodHound.py project compiled to .exe via cx\_Freeze. You may want to run this with `--disable-pooling` flag.
 	* `.\b_python.exe -u <username> -p <pass> -d <domain> -dc <dc_fqdn> -gc <dc_fqdn> -ns <dc_ip> -c all --disable-pooling` 
