@@ -21,6 +21,7 @@ Most of the stuff here is far from fancy or the best solution possible, sorry :(
 * hook\_detector.cs: EDR Hooks Detector in C#. Modify the code to include other win32 APIs.
 * find\_cpassword\_sysvol.ps1: A simple ps1 script to search for "cpassword" references in SYSVOL folder.
 * find\_pwd\_shared\_folder.ps1: A simple ps1 script to search for password/juicy references in a given shared folder. Modify `$ComputerName`, `$DomainName` and `$SharedFolder` variables accordingly.
+* enum\_gpos.ps1: A ps1 script to enum the ACLs associated to GPOs in the environment. Implemented using ADSI so you don't need any external module.
 * crackmapexec.exe: CrackMapExec compiled to .exe.
 * crackmapexec_t.exe: CrackMapExec compiled to .exe with reduced entropy to bypass some specific EDRs (~~CS Falcon~~).
 * AMSI\_bypass\_cross\_project.cpp: Patch AMSI in a given PID (C++). 
