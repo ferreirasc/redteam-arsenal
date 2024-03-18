@@ -12,6 +12,10 @@ Param(
     [string]
     $DomainName,
 
+	[Parameter(Mandatory=$False)]
+    [switch]
+    $Groups,
+
     [Parameter(Mandatory=$False)]
     [System.Management.Automation.PSCredential]
     [System.Management.Automation.Credential()]$Credential = [System.Management.Automation.PSCredential]::Empty
@@ -64,11 +68,40 @@ foreach($rawObject in $allsobjects){
             if($_.ObjectType -eq '00000000-0000-0000-0000-000000000000'){'ALL'}}}, 
         IdentityReference, AccessControlType 
 
-    if ($Name) {
-        $facl = $acls | Where-Object {($_.IdentityReference -match $Name)}
-    }else{
+    if ($Name -and $Groups) { # If "-Name" and "-Groups" parameters set, filter the ACLs by the $Name provided and the groups associated
+		$adsiSearcherObj.Filter = "(&(objectCategory=User)(samAccountName=$Name))"
+		$user = $adsiSearcherObj.FindOne()
+		if ($user -ne $null) {
+			$userEntry = $user.GetDirectoryEntry()
+			# Retrieve groups the user is a member of
+			$userGroups = $userEntry.Properties["memberOf"] | ForEach-Object {
+				$groupPath = "LDAP://$_"
+				$group = [ADSI]$groupPath
+				$group.Properties["samAccountName"].Value
+			}
+		}
+		
+		$facl = $acls | Where-Object {
+			$match = $false
+			if ($_.IdentityReference -match $Name){
+				$match = $true
+			}
+			else{
+				foreach ($group in $userGroups) {
+					if ($_.IdentityReference -match $group) {
+						$match = $true
+						break
+					}
+				}
+			}
+			$match
+		}
+    }elseif($Name){ # Filter by $Name only
+		$facl = $acls | Where-Object {($_.IdentityReference -match $Name)}
+	}else{
         $facl = $acls 
     }
+	
     foreach ($acl in $facl){
                
         if ($acl.ObjectType -ne $null){
